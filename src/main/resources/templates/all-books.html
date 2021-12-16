@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head::head">
+</head>
+<body>
+<!-- Navigation-->
+<nav th:replace="fragments/navigation::navigation">
+</nav>
+
+<div class="container">
+    <section th:each="e : ${allBooks}">
+        <div class="row">
+            <hr>
+        </div>
+        <div class="row text-center mb-3">
+            <h2 th:text="*{e.getKey()}"></h2>
+        </div>
+
+        <div class="row mb-4">
+            <div th:each="mangaBook : ${e.getValue()}" class="col-lg-3 col-sm-6 mb-5">
+                <a th:href="@{/books/{id}/details(id=*{mangaBook.id})}">
+                    <div class="card w-25 bg-dark text-white">
+                        <img th:src="*{mangaBook.imageUrl}" class="card-im" alt="...">
+
+                    </div>
+                </a>
+
+                <th:block sec:authorize="hasRole('ADMIN')">
+                    <form
+                            th:method="delete"
+                            th:action="@{/books/{id}/delete(id=*{mangaBook.id})}">
+                        <input type="submit" class="btn btn-sm btn-outline-dark mt-2" value="Delete">
+                    </form>
+                    <a th:href="@{/books/{id}/edit(id=*{mangaBook.id})}"
+                       class="btn btn-sm btn-outline-dark mt-2">Edit</a>
+                </th:block>
+            </div>
+        </div>
+
+    </section>
+</div>
+
+<footer th:replace="fragments/footer::footer"></footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head::head">
+</head>
+<body>
+<nav th:replace="fragments/navigation::navigation">
+</nav>
+
+<div class="row justify-content-center align-items-center my-5">
+    <div class="col-md-6">
+        <div class="container-fluid bg-blur rounded p-5 mb-5 w-75">
+            <div class="form-group my-3">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-body">
+                        <form th:method="put"
+                              th:action="@{/books/{id}/edit(id=*{id})}"
+                              th:object="${bookToEdit}"
+                              enctype="multipart/form-data">
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{title}"
+                                        th:errorclass="is-invalid"
+                                        type="text" name="title" class="form-control"
+                                        id="title"
+                                        placeholder="Title">
+                                <label for="title">Book Title</label>
+
+                                <p class="invalid-feedback errors alert alert-danger">
+                                    Title is required.
+                                </p>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{price}"
+                                        th:errorclass="is-invalid"
+                                        type="text" name="price" class="form-control"
+                                        id="price"
+                                        placeholder="price">
+                                <label for="price">Price</label>
+
+                                <p class="invalid-feedback errors alert alert-danger">
+                                    Price is required and must be a positive.
+                                </p>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{author}"
+                                        th:errorclass="is-invalid"
+                                        type="text" name="author" class="form-control"
+                                        id="author"
+                                        placeholder="author">
+                                <label for="author">Author</label>
+
+                                <p class="invalid-feedback errors alert alert-danger">
+                                    Author is required.
+                                </p>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{image}"
+                                        th:errorclass="is-invalid"
+                                        type="file"  name="image" class="form-control"
+                                        id="image"
+                                        placeholder="imageUrl">
+                                <label for="image">Image</label>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{description}"
+                                        th:errorclass="is-invalid"
+                                        type="text" name="description" class="form-control"
+                                        id="description"
+                                        placeholder="description">
+                                <label for="description">Description</label>
+
+                                <p class="invalid-feedback errors alert alert-danger">
+                                    Description is required.
+                                </p>
+                            </div>
+
+
+                            <div class="card-footer text-center py-3">
+                                <button type="submit" class="btn btn-outline-secondary mb-2">Edit</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="fragments/footer::footer"></footer>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head::head">
+</head>
+<body>
+<nav th:replace="fragments/navigation::navigation"></nav>
+
+<div class="row justify-content-center align-items-center my-5">
+    <div class="col-md-6">
+        <div class="container-fluid bg-blur rounded p-5 mb-5 w-75">
+            <div class="form-group my-3">
+                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Register</h3></div>
+                    <div class="card-body">
+                        <form th:method="post"
+                              th:action="@{/users/register}"
+                              th:object="${userModel}">
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{firstName}"
+                                        th:errorclass="is-invalid"
+                                        type="text" min="3" max="20" name="firstName" class="form-control"
+                                        id="floatingFirstName"
+                                        placeholder="FirstName">
+                                <label for="floatingFirstName">First Name</label>
+
+                                <p class="invalid-feedback errors alert alert-danger">
+                                    First name is required and should be between 3 and 20 symbols.
+                                </p>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{lastName}"
+                                        th:errorclass="is-invalid"
+                                        type="text" min="3" max="20" name="lastName" class="form-control"
+                                        id="floatingLastName"
+                                        placeholder="LastName">
+                                <label for="floatingLastName">Last Name</label>
+
+                                <p class="invalid-feedback errors alert alert-danger">
+                                    Last name is required and should be between 3 and 20 symbols.
+                                </p>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{username}"
+                                        th:errorclass="is-invalid"
+                                        type="text" min="3" max="20" name="username" class="form-control"
+                                        id="floatingUsername"
+                                        placeholder="Username">
+                                <label for="floatingUsername">Username</label>
+
+                                <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                   class="invalid-feedback errors alert alert-danger">
+                                    Username is required and should be between 3 and 20 symbols.
+                                </p>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{email}"
+                                        th:errorclass="is-invalid"
+                                        type="text" name="email" class="form-control" id="floatingEmail"
+                                        placeholder="Email">
+                                <label for="floatingEmail">Email</label>
+
+                                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                   class="invalid-feedback errors alert alert-danger">
+                                    Email is required.
+                                </p>
+                            </div>
+                            <div class="form-floating mb-5">
+                                <input
+                                        th:field="*{password}"
+                                        th:errorclass="is-invalid"
+                                        type="password" min="3" max="20" name="password" class="form-control"
+                                        id="floatingPassword"
+                                        placeholder="Password">
+                                <label for="floatingPassword">Password</label>
+
+                                <p class="invalid-feedback errors alert alert-danger">
+                                    Password is required and should be between 3 and 20 symbols.
+                                </p>
+                            </div>
+                            <div class="form-floating">
+                                <input
+                                        th:field="*{confirmPassword}"
+                                        th:errorclass="is-invalid"
+                                        type="password" min="3" max="20" name="confirmPassword" class="form-control"
+                                        id="floatingConfirmPassword"
+                                        placeholder="RepeatPassword">
+                                <label for="floatingConfirmPassword">Confirm Password</label>
+
+                                <p th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"
+                                   class="invalid-feedback errors alert alert-danger">
+                                    Confirmation password is required and should be between 3 and 20 symbols.
+                                </p>
+                            </div>
+
+                            <div class="card-footer text-center py-3">
+                                <button type="submit" class="btn btn-outline-secondary mb-2">Create account</button>
+                                <div class="small">Already have an account?&nbsp&nbsp<a href="/users/login">Log in!</a>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="fragments/footer::footer">
+</div>
+</body>
+</html>

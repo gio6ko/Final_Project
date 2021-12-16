@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="fragments/head::head">
+</head>
+<body>
+<!-- Navigation-->
+<nav th:replace="fragments/navigation::navigation">
+</nav>
+
+<div class="page-wrap d-flex flex-row align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 text-center">
+                <span class="display-1 d-block">Nani?!</span>
+                <div class="mb-4 lead">Something went wrong.</div>
+                <a th:href="@{/}" class="btn btn-outline-dark ">Back to Home</a>
+            </div>
+            <img src="/images/naruto_error.jpg" class="img-fluid w-25 mb-5" alt="">
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="fragments/footer::footer"></footer>
+
+
+</body>
+</html>

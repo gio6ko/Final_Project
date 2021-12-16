@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/head::head"></head>
+
+
+<body>
+
+<div th:replace="fragments/navigation::navigation">
+    Navbar
+</div>
+
+
+<div class="container-fluid">
+    <h1 class="text-center  mt-5">Welcome to Stats,</h1>
+
+
+    <h3 class="text-center  mt-5">Total requests <th:block th:text="${stats.getTotalRequests()}"></th:block></h3>
+    <h3 class="text-center  mt-5">Anonymous requests <th:block th:text="${stats.getAnonymousRequests()}"></th:block></h3>
+    <h3 class="text-center  mt-5">Authorized requests <th:block th:text="${stats.getAuthRequests()}"></th:block></h3>
+</div>
+
+<div>
+    <footer th:replace="fragments/footer::footer"></footer>
+</div>
+
+</body>
+</html>
