@@ -23,7 +23,7 @@ public class ShopUserServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public ShopUser loadUserByUsername(String username) throws UsernameNotFoundException {
 
         UserEntity userEntity = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("No such user"));
@@ -32,7 +32,7 @@ public class ShopUserServiceImpl implements UserDetailsService {
         return mapToUserDetails(userEntity);
     }
 
-    private static UserDetails mapToUserDetails(UserEntity user) {
+    private static ShopUser mapToUserDetails(UserEntity user) {
 
         List<GrantedAuthority> authorities = user.getRoles()
                 .stream()

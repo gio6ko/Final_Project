@@ -1,6 +1,7 @@
 package bg.softuni.final_project.config;
 
 
+import bg.softuni.final_project.model.entity.enums.UserRoleEnum;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -28,8 +29,12 @@ public class ApplicationSecurityConfiguration extends WebSecurityConfigurerAdapt
 
         http.authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/", "/users/login", "/users/register", "/contacts").permitAll()
-                //.antMatchers("/statistics").hasRole(UserRoleEnum.ADMIN.name())
+                .antMatchers("/", "/users/login", "/users/register", "/contacts",
+                        "/books/all","/books/*/details").permitAll()
+                .antMatchers(
+                        "/statistics", "/books/*/edit","/books/*/delete",
+                        "/books/add"
+                ).hasRole(UserRoleEnum.ADMIN.name())
                 .antMatchers("/**").authenticated()
                 .and()
                 .formLogin()
