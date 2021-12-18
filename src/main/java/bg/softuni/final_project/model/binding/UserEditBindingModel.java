@@ -1,5 +1,9 @@
 package bg.softuni.final_project.model.binding;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 public class UserEditBindingModel {
 
 
@@ -8,6 +12,8 @@ public class UserEditBindingModel {
     private String email;
 
 
+    @Size(min = 3, max = 20, message = "ala bala")
+    @NotBlank
     public String getFirstName() {
         return firstName;
     }
@@ -17,6 +23,9 @@ public class UserEditBindingModel {
         return this;
     }
 
+
+    @NotBlank
+    @Size(min = 3, max = 20)
     public String getLastName() {
         return lastName;
     }
@@ -26,6 +35,9 @@ public class UserEditBindingModel {
         return this;
     }
 
+
+    @Email
+    @NotBlank
     public String getEmail() {
         return email;
     }

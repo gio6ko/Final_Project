@@ -14,9 +14,9 @@
 </head>
 <body>
 
-<div class="container" th:object="${user}">
+<div class="container" >
     <div class="row gutters">
-        <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+        <div th:object="${user}" class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
             <div class="card h-100">
                 <div class="card-body">
                     <div class="account-settings">
@@ -24,8 +24,8 @@
                             <div class="user-avatar">
                                 <img src="/images/avatar.jpg" alt="Maxwell Admin">
                             </div>
-                            <h5 class="user-name" th:text="*{firstName} + ' ' + *{lastName}">Name</h5>
-                            <h6 class="user-email" th:text="*{email}">yuki@Maxwell.com</h6>
+                            <h5 class="user-name" th:text="|*{firstName}| + ' ' + *{lastName}">Name</h5>
+                            <h6 class="user-email" th:text="*{email}">test@abv.bg</h6>
                         </div>
                         <div class="about">
                             <h5>About</h5>
@@ -39,7 +39,8 @@
         <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
             <div class="card h-100">
                 <form th:method="put"
-                      th:action="@{/users/profile}">
+                      th:action="@{/users/profile}"
+                      th:object="${userEditBindingModel}">
                     <div class="card-body">
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -48,20 +49,46 @@
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="firstName">First Name</label>
-                                    <input type="text" class="form-control" id="firstName" name="firstName"
-                                           placeholder="Enter First Name">
+                                    <input
+                                            th:field="*{firstName}"
+                                            th:errorclass="is-invalid"
+                                            type="text" min="3" max="20" class="form-control" id="firstName"
+                                            name="firstName"
+                                            placeholder="Enter First Name">
+
+                                    <p class="invalid-feedback errors alert alert-danger">
+                                        First name is required and should be between 3 and 20 symbols.
+                                    </p>
                                 </div>
+
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="lastName">Last Name</label>
-                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name">
+                                    <input
+                                            th:field="*{lastName}"
+                                            th:errorclass="is-invalid"
+                                            type="text" class="form-control" id="lastName" name="lastName"
+                                            placeholder="Enter Last Name">
+
+                                    <p class="invalid-feedback errors alert alert-danger">
+                                        Last name is required and should be between 3 and 20 symbols.
+                                    </p>
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
                                     <label for="eMail">Email</label>
-                                    <input type="email" class="form-control" id="eMail" name="email" placeholder="Enter email ">
+                                    <input
+                                            th:field="*{email}"
+                                            th:errorclass="is-invalid"
+                                            type="email" class="form-control" id="eMail" name="email"
+                                            placeholder="Enter email ">
+
+                                    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                       class="invalid-feedback errors alert alert-danger">
+                                        Email is required.
+                                    </p>
                                 </div>
                             </div>
 

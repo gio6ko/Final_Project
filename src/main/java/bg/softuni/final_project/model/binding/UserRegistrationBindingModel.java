@@ -89,9 +89,4 @@ public class UserRegistrationBindingModel {
         return this;
     }
 
-
-//    @AssertTrue(message = "Passwords should match")
-//    public boolean isPasswordEqual() {
-//        return this.password != null && this.password.equals(this.confirmPassword);
-//    }
 }

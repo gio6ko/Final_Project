@@ -45,8 +45,6 @@ public class CartController {
 
         boolean added = cartService.addBookToCart(id, principal.getIdentifier());
 
-//        attributes.addFlashAttribute("items", cartService.getRepoCount(principal.getName()))
-//                .addFlashAttribute("added",added);
         return "redirect:/";
     }
 

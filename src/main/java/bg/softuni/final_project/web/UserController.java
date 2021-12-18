@@ -81,19 +81,29 @@ public class UserController {
 
 
     @GetMapping("/profile")
-    public String getProfilePage( Model model, Principal principal) {
+    public String getProfilePage(Model model, Principal principal) {
 
         UserEntity user = userService.findByUsername(principal.getName());
+
         model.addAttribute("user", modelMapper.map(user, UserView.class));
 
         return "profile";
     }
 
     @PutMapping("/profile")
-    public String editUser( @Valid UserEditBindingModel userEditBindingModel, Principal principal) {
+    public String editUser(@Valid UserEditBindingModel userEditBindingModel,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes,
+                           Principal principal) {
 
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("userEditBindingModel", userEditBindingModel);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.userEditBindingModel", bindingResult);
 
-        userService.editUser(principal.getName(),userEditBindingModel);
+            return "redirect:/users/profile";
+        }
+
+        userService.editUser(principal.getName(), userEditBindingModel);
 
         return "redirect:/users/profile";
     }
@@ -101,6 +111,11 @@ public class UserController {
     @ModelAttribute("userModel")
     public UserRegistrationBindingModel userModel() {
         return new UserRegistrationBindingModel();
+    }
+
+    @ModelAttribute("userEditBindingModel")
+    public UserEditBindingModel userEditBindingModel() {
+        return new UserEditBindingModel();
     }
 
 }
