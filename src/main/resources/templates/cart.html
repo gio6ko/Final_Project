@@ -64,7 +64,7 @@
                                                             class="fas fa-minus"></i></button>
                                             </li>
                                             <li class="page-item">
-                                                <input type="text" th:name="quantity" class="page-link" value="0"
+                                                <input type="text"  class="page-link" value="0"
                                                        th:id="'textbox' + *{book.getId}"/>
                                             </li>
                                             <li class="page-item">
@@ -96,7 +96,7 @@
                     <div class="col-md-12 col-lg-10 col-11 mx-auto mt-lg-0 mt-md-5">
                         <form th:action="@{/order/add}" th:method="post">
                             <div class="right_side p-3 shadow bg-white">
-                                <h2 class="product_name mb-5">The Total Amount Of</h2>
+                                <h2 class="product_name mb-5">Total Price:</h2>
                                 <div class="price_indiv d-flex justify-content-between">
                                     <p>Product amount</p>
                                     <p>$<span id="product_total_amt">0.00</span></p>

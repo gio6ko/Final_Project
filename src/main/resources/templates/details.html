@@ -13,6 +13,7 @@
             <div class="col-md-5 text-center text-md-start">
                 <h1>
                     <div class="display-2" th:text="*{title}"></div>
+                    <span th:text="|Price: $*{price}|"> $ </span>
                 </h1>
                 <p class="lead my-4 text-muted" th:text="*{description}"></p>
                 <a th:href="@{/cart/{id}(id=*{id})}" class="btn btn-secondary btn-lg">Add to card</a>
