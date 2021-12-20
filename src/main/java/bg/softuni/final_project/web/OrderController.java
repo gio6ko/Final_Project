@@ -25,6 +25,7 @@ public class OrderController {
 
     @PostMapping("/order/add")
     public String addOrder(Principal principal, @RequestParam(value = "sum") Integer sum,
+                           @RequestParam(value = "zeroValue") Integer zeroValue,
                            RedirectAttributes redirectAttributes) {
 
 
@@ -32,6 +33,9 @@ public class OrderController {
 
             redirectAttributes.addFlashAttribute("zeroSum", true);
 
+            return "redirect:/cart";
+        } else if (zeroValue == 1) {
+            redirectAttributes.addFlashAttribute("valueIsZero", true);
             return "redirect:/cart";
         }
         orderService.createOrder(principal.getName(), sum);

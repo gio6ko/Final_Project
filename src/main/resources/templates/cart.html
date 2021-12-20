@@ -64,14 +64,13 @@
                                                             class="fas fa-minus"></i></button>
                                             </li>
                                             <li class="page-item">
-                                                <input type="text"  class="page-link" value="0"
+                                                <input type="text" class="page-link" value="0"
                                                        th:id="'textbox' + *{book.getId}"/>
                                             </li>
                                             <li class="page-item">
                                                 <button class="page-link"
                                                         th:onclick="increaseNumber([[*{book.getId}]],[[*{book.getPrice}]])">
-                                                    <i
-                                                            class="fas fa-plus"></i></button>
+                                                    <i class="fas fa-plus"></i></button>
                                             </li>
                                         </ul>
                                     </div>
@@ -87,7 +86,7 @@
                                         </form>
                                     </div>
                                     <div class="col-4 d-flex justify-content-end price_money">
-                                        <h3>$<span th:id="'itemval' + *{book.getId}">0.00</span></h3>
+                                        <h3>$<span th:id="'itemval' + *{book.getId}" class="priceValue">0.00</span></h3>
                                     </div>
                                 </div>
                             </div>
@@ -105,11 +104,17 @@
                                 <div class="total-amt d-flex justify-content-between font-weight-bold">
                                     <p>$<span id="total_cart_amt">0.00</span></p>
                                     <input id="hiddenValue" type="hidden" name="sum">
+                                    <input id="checkForZeroValue" type="hidden" name="zeroValue">
 
                                 </div>
                                 <p th:if="${zeroSum}"
                                    class="errors alert alert-danger">
                                     You need to select at least one book.
+                                </p>
+
+                                <p th:if="${valueIsZero}"
+                                   class="errors alert alert-danger">
+                                    Please select all of the items or delete the one you won't buy.
                                 </p>
                                 <button type="submit"
                                         class="btn btn-secondary text-uppercase" onclick="addToHiddenInput()">Create

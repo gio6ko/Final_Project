@@ -39,4 +39,17 @@ const addToHiddenInput = () => {
     let hiddenValue = document.getElementById('hiddenValue')
 
     hiddenValue.value = parseInt(total_cart_amt.innerText)
+
+    let values = Array.from(document.querySelectorAll('.priceValue'))
+
+
+    let zeroValue = values.find(v => v.innerHTML === "0.00")
+
+    if (zeroValue === undefined) {
+
+        document.getElementById('checkForZeroValue').value = 0;
+    } else {
+        document.getElementById('checkForZeroValue').value = 1;
+    }
+
 }

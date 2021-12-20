@@ -62,4 +62,9 @@ public class CartController {
         return false;
     }
 
+    @ModelAttribute("valueIsZero")
+    public boolean valueIsZero() {
+        return false;
+    }
+
 }
